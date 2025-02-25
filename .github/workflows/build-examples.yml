@@ -25,13 +25,11 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
     - run: npm ci
-    - run: npm run build-examples
-      env:
-        VITE_ION_KEY: ${{ secrets.VITE_ION_KEY }}
+    - run: npm run build
 
     - name: Commit Examples
       uses: EndBug/add-and-commit@v7
       with:
-        add: 'example/bundle'
+        add: 'example/docs'
         message: 'update builds'
         push: 'origin HEAD:examples --force'
