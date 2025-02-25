@@ -18,21 +18,13 @@ import {
   UpdateOnChangePlugin,
   TileCompressionPlugin,
   TilesFadePlugin,
-  GLTFExtensionsPlugin,
 } from '3d-tiles-renderer/plugins';
-import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader.js';
 
 // R3F, DREI and LEVA imports
 import { Canvas } from '@react-three/fiber';
 import { TilesLoadingBar } from './TilesLoadingBar.jsx';
 
-const dracoLoader = new DRACOLoader().setDecoderPath( 'https://www.gstatic.com/draco/v1/decoders/' );
-
 function App() {
-
-  // TODO: the renderer is rerendering due to floating point issues
-  // - see if we should trigger an invalidate on tiles plugin add and params change
-  // - see if we need to trigger a force update on plugin add for the UpdateOnChange plugin
 
   return (
     <Canvas
@@ -52,13 +44,10 @@ function App() {
     >
       <color attach="background" args={ [ 0x111111 ] } />
 
-      <TilesRenderer group={ { rotation: [ - Math.PI / 2, 0, 0 ] } } url="https://storage.googleapis.com/tms-mars/tilemapresource.xml"
-        ref={ tiles => window.TILES = tiles }
-      >
+      <TilesRenderer group={ { rotation: [ - Math.PI / 2, 0, 0 ] } } url="https://storage.googleapis.com/tms-mars/tilemapresource.xml">
         <TilesPlugin plugin={ TMSTilesPlugin } args={ { shape: 'ellipsoid' } } />
-        <TilesPlugin plugin={ GLTFExtensionsPlugin } dracoLoader={ dracoLoader } />
         <TilesPlugin plugin={ TileCompressionPlugin } />
-        <TilesPlugin plugin={ UpdateOnChangePlugin } />
+        {/* <TilesPlugin plugin={ UpdateOnChangePlugin } /> */}
         <TilesPlugin plugin={ TilesFadePlugin } />
 
         {/* Controls */}
