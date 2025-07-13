@@ -15,7 +15,6 @@ import {
 // Plugins
 import {
   TMSTilesPlugin,
-  UpdateOnChangePlugin,
   TileCompressionPlugin,
   TilesFadePlugin,
 } from '3d-tiles-renderer/plugins';
@@ -26,7 +25,7 @@ import { TilesLoadingBar } from './TilesLoadingBar.jsx';
 
 function App() {
 
-  return (
+  return (<>
     <Canvas
       frameloop='demand'
       camera={ {
@@ -62,7 +61,21 @@ function App() {
         <TilesLoadingBar />
       </TilesRenderer>
     </Canvas>
-  );
+    <div style={ {
+      position: 'absolute',
+      left: 0,
+      bottom: 0,
+      color: 'white',
+      padding: '5px',
+      opacity: 0.5,
+      fontSize: '13px',
+    } }>
+      <a href="https://moon.bao.ac.cn/web/enmanager/kxsj?missionName=HX1&zhName=MoRIC&grade=DOM-76.0" style={ {
+        color: 'white',
+
+      } }>Tianwen 1 Orbiter <br/>data set courtesy of CNSA</a>
+    </div>
+  </>);
 
 }
 
